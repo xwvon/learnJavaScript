@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # JavaScript学习记录
 ## 冒泡排序
 ```js
