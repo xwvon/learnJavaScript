@@ -179,3 +179,29 @@ function removeDuplicates = function (nums) {
     return i+1;
 }
 ```
+## leetcode之移除元素
+在原数组上移除给出的元素，返回数组的长度
+```js
+function remvoeElement(arr, val) => {
+    if (arr.length === 0) return 0;
+    for (let i = arr.length - 1; i >= 0; i--) {
+        if (arr[i] === val) {
+            arr.splice(i, 1);
+        }
+    }
+    return arr.length;
+};
+```
+## leetcode之实现strStr()
+在字符串中返回给定字符串的索引
+```js
+const strStr = (haystack, needle) => haystack.indexOf(needle);
+```
+## leetcode之搜索插入位置
+返回一个数字在给定排序数组中的索引，如果这个数字不在排序数组中，则返回这个数字插入数组的位置
+```js
+const searchInsert = function (nums, target) {
+    if (nums.includes(target)) return nums.indexOf(target);
+    return nums.filter(item => item < target).length;
+};
+```
