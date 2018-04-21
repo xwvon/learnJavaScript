@@ -19,7 +19,7 @@
 + [Even or odd number](#even-or-odd-number)
 + [Factorial](#factorial)
 + [Fibonacci array generator](#fibonacci-array-generator)
-+ [Filter out non-unique values in an array](filter-out-non-unique-values-in-an-array)
++ [Filter out non-unique values in an array](#filter-out-non-unique-values-in-an-array)
 + [Flatten array](#flatten-array)
 + [et scroll position](#et-scroll-position)
 + [Greatest common divisor](#greatest-common-divisor)
@@ -50,61 +50,72 @@ const anagrams = s => {
 ```
 ## Average of array of numbers
 Use reduce() to add each value to an accumulator, initialized with a value of 0, divide by the length of array
-> 先用数组的归并方法求的
+> 利用数组的归并方法求得数组的和，再除以数组的长度
 ```js
 const average = array => array.reduce( (a, b) => a + b, 0) / array.length;
 ```
 ## Capitalize first letter of every word
 Use replace() to match the first character of each word and toUpperCase() to capitalize it
+> 使得字符串中的每个单词的第一个字母变成大写
 ```js
 const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
 ```
 ## Capitalize first letter
 Use slice(0,1) and toUpeprease() to capitalize first letter, slice(1) to get the rest of the string. Omit the lowerRest parameter to keep the rest of the string intact, or set it to true convert to lower case
+> 把传入的字符串转化成首字母大写的形式
 ```js
 const capitalize = (str, lowerRest=false) => str.substring(0,1).toUpperCase() + (lowerRest ? str.substring(1).toLowerCase() : str.substring(1));
 ```
 ## Count occurrentences of a value in array
 Use reduce() to increment a counter each time you encounter the specific value inside the array
+> 利用数组的归并方法统计给定数值在数组中的个数
 ```js
 const countValueArray = (arr, value) => arr.reduce((i, item) => item === value ? i+1 : i+0, 0);
 ```
 ## Current URL
 Use Window.location.href to get current URL
+> 获得当前网页的URL
 ```js
 const currentUrl = _ => window.location.href;
 ```
 ## Curry
+> 柯里化一个函数
 ```js
 const curry = f => (...args) => args.length >= f.length ? f(...args) : (...othArgs) => curry(f)(...args, ...othArgs);
 ```
 ## Diffence between arrays
 Use filter() to remove values that are part of values, determined using includes()
+> 过滤出两个数组之间不相同的元素
 ```js
 const diffence = (arr, values) => arr.filter( (v) => !values.includes(v));
 ```
 ## Distance between two points
 Use Math.hypot() to calculate the Euclidean distance between two points
+> 利用Math.hypot()方法计算出两个点之间的距离
 ```js
 const disance = (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1);
 ```
 ## Escape regular expression
 Use replace() to escape special characters
+> 利用正则表达式替换特殊字符
 ```js
 const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 ```
 ## Even or odd
 Use Math.abs() to extend logic to negative numbers, check using the modulo(%) operator. Return true if the number is even, false if the number is odd
+> 判断一个数字的寄偶
 ```js
 const isEven = num => Math.abs(num) % 2 === 0;
 ```
 ## Factorial
 Use recursion. If n is less than or equal to 1, return 1. Otherwise, return the product of n and the factorial of n - 1.
+> 利用递归求一个整数的阶乘
 ```js
 const factorial = n => n <= 1 ? 1 : n * factorial(n - 1);
 ```
 ## Fibonacci array generator
 Create an empty array of the specific length, initialzing the first and two values (0 and 1). Use reduce() to add value into the array, using the sum of the last two values, expect for the first two.
+> 利用数组的归并方法创建一个斐波那契数列生成器
 ```js
 const fibonacci = n => Array.apply(null, [1,2]concat(Array(n-2))).reduce((acc, val, i) => {
     acc.push( i > 1 ? acc[i-1] + acc[i-2] : val);
@@ -113,11 +124,13 @@ const fibonacci = n => Array.apply(null, [1,2]concat(Array(n-2))).reduce((acc, v
 ```
 ## Filter out non-unique values in an array
 Use Array.filter() for an array containing only the unique values.
+> 利用数组的filter()方法过滤出数组中不止出现过一次的数
 ```js
 const unique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
 ```
 ## Flatten array
 Use recursion. Use reduce() to get all elements that are not arrays, flatten each element that is an arrry.
+> 使用递归将多维数组变成一维数组
 ```js
 const flatten = arr => arr.reduce((a, v) => a.concat(Array.isArray(v) ? flattene(v) : v), []);
 ```
@@ -131,6 +144,7 @@ const getScrollPos = (el=window) => {
 ```
 ## Greatest common divisor
 Use recursion. Base case is when y equals 0. In this case, return x. Otherwise, return the GCD of y and the remainder of the divison x/y.
+> 使用递归的方法求两个数字的最大公约数
 ```js
 const gcd = (x, y) => y % x === 0 ? x : gcd(y%x, x);
 ```
