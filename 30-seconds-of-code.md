@@ -200,3 +200,24 @@ const uniqueArray = arr => [...new Set(arr)];
 ```js
 const validateNumber = n => !isNaN(parseFloat(n)) && isFinite(n);
 ```
+## ary
+将传入的fn函数作用于前n个参数，忽略其他的参数
+```js
+const ary = (fn, n) => (...args) => fn(...args.slice(0, n));
+
+```
+Example
+```js
+const firstTwoMax = ary(Math.max, 2);
+[[2,6,,'a'], [8,4,6], [10]].map(arr => firstTwoMax(...arr));
+```
+## call
+```js
+const call = (key, ...args) => context => context[key](...args);
+```
+Example
+```js
+Promise.reslove([1,2,3]).then(call('map', x => 2 * x)).then(console.log); //[2,4,6]
+const map = call.bind(null, 'map');
+Promise.resolve([1,2,3]).then(map(x => 2 * x)).then(console.log); //[2,4,6]
+```
