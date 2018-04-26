@@ -227,7 +227,7 @@ Example
 const firstTwoMax = ary(Math.max, 2);
 [[2,6,,'a'], [8,4,6], [10]].map(arr => firstTwoMax(...arr));
 ```
-## call
+## cal
 ```js
 const call = (key, ...args) => context => context[key](...args);
 ```
@@ -236,4 +236,16 @@ Example
 Promise.reslove([1,2,3]).then(call('map', x => 2 * x)).then(console.log); //[2,4,6]
 const map = call.bind(null, 'map');
 Promise.resolve([1,2,3]).then(map(x => 2 * x)).then(console.log); //[2,4,6]
+```
+## overArgs
+返回一个按给定转化方式的转化自身参数的函数
+```js
+const overArgs = (fn, transforms) => (...args) => fn(...args.map((v, i) => transforms[i](v)));
+```
+Example
+```js
+const square = x => x * x;
+const double = x => x * 2;
+const fn = overArgs((x, y) => [x, y], [square, double]);
+fn([9,3]); //[81, 6]
 ```
