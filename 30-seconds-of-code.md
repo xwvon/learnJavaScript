@@ -38,6 +38,9 @@
 + [Validate number](#validate-number)
 + [ary](#ary)
 + [call](#call)
++ [overArgs](#overArgs)
++ [chunk](#chunk)
++ [compact](#compact)
 ## 字符串换位组合
 ```js
 const anagrams = s => {
@@ -227,7 +230,7 @@ Example
 const firstTwoMax = ary(Math.max, 2);
 [[2,6,,'a'], [8,4,6], [10]].map(arr => firstTwoMax(...arr));
 ```
-## cal
+## call
 ```js
 const call = (key, ...args) => context => context[key](...args);
 ```
@@ -248,4 +251,22 @@ const square = x => x * x;
 const double = x => x * 2;
 const fn = overArgs((x, y) => [x, y], [square, double]);
 fn([9,3]); //[81, 6]
+```
+## chunk
+按指定的规格划分数组
+```js
+const chunk = (arr, size) => Array.from({length: Math.ceil(arr.length / size)}, (v, i) => arr.slice(i * size, i * size + size));
+```
+example
+```js
+chunk([1,2,3,4,5], 2) //[[1,2], [3,4], [5]]
+```
+## Compact
+移除数组中的布尔值为false的值
+```js
+const compact = arr => arr.filter(Boolean);
+```
+example
+```js
+compact([0,1,false,2,'',3,'a','e' * 23, NaN, 's', 34]);//[1, 2, 3, "a", "s", 34]
 ```
