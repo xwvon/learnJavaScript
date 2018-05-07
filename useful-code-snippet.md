@@ -345,3 +345,48 @@ function time(y,m){
  
 time(2018,5);
 ```
+## 二十、FormData异步上传文件
+```html
+<input type="file" id="file">
+<script>
+//创建formData对象
+const formData = new FormData(),
+    uploadFile = document.getElementById('file');
+//将文件放入formData对象
+formData.append('file', uploadFile.files[0]);
+//通过xhr发送formData数据到服务器
+const xhr = new XMLHttpRequest();
+
+//监听上传进度
+xhr.upload.onprogress = function (event) {
+    //event.lengthComputable：文件长度
+    if (event.lengthComputable) {
+        // event.total：文件总字节数
+        // event.loaded：文件已上载的字节数
+        var percent = Math.round(event.loaded*100/event.total);
+        console.log(percent);
+    }
+}
+//监听文件传输开始
+xhr.onloadStart = function (event) {
+    xhr.abort();
+}
+//监听Ajax成功完成事件
+xhr.onload = function (event) {
+    //...
+}
+//监听Ajax错误事件
+xhr.onerror= function (event) {
+    //...
+}
+//监听Ajax被终止事件
+xhr.onabort = function (event) {
+    //...
+}
+xhr.onloaded = function (event) {
+    //...
+}
+xhr.open('POST', 'url', true);
+xhr.send(formData);
+<script>
+```
