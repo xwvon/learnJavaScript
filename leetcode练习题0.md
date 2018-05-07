@@ -14,6 +14,23 @@ function sortArr(arr) {
     return arr;
 }
 ```
+## 快速排序
+```js
+function quickSort(arr) {
+    if (arr.lenght <= 1) return arr;
+    var pivotIndex = Math.floor(arr.length / 2);
+    var pivot = arr.splice(pivotIndex, 1)[0];
+    var left = [], right = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(right);
+        }
+    }
+    return quickSort(left).concat([pivot], quickSort(right));
+}
+```
 ## 三个number比较
 ```
 1 < 2 < 3 //->true
@@ -61,7 +78,7 @@ function search(key, arr){
 ```
 ## leetcode第一题两数之和
 ```js
-function twoSum(nums, targe) {
+function twoSum(nums, target) {
     var obj = {};
     for (var i = 0; i < nums.length; i++) {
         var x = nums[i]
